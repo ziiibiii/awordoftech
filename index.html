@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio - Alex Smith</title>
+  <style>
+    /* Reset */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body, h1, h2, h3, p, ul {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #222;
+    }
+    body {
+      background: #f5f7fa;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: white;
+      box-shadow: 0 2px 5px rgb(0 0 0 / 0.1);
+      z-index: 999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+    nav .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #007bff;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    nav ul li a {
+      color: #007bff;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover {
+      color: #0056b3;
+    }
+
+    /* Sections */
+    section {
+      padding: 6rem 2rem 4rem;
+      max-width: 900px;
+      margin: 0 auto;
+      margin-top: 5rem;
+    }
+
+    /* Hero */
+    #hero {
+      text-align: center;
+      padding-top: 8rem;
+      padding-bottom: 6rem;
+    }
+    #hero h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      color: #007bff;
+    }
+    #hero p {
+      font-size: 1.25rem;
+      color: #555;
+    }
+
+    /* About */
+    #about p {
+      font-size: 1.1rem;
+      color: #444;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* Projects */
+    #projects {
+      text-align: center;
+    }
+    #projects .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .project-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 3px 7px rgb(0 0 0 / 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+    }
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 15px rgb(0 0 0 / 0.15);
+    }
+    .project-card h3 {
+      margin-bottom: 0.5rem;
+      color: #007bff;
+    }
+    .project-card p {
+      color: #555;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    /* Contact */
+    #contact {
+      text-align: center;
+      padding-bottom: 6rem;
+    }
+    #contact p {
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+    }
+    #contact a {
+      color: #007bff;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.3s;
+    }
+    #contact a:hover {
+      border-bottom: 2px solid #007bff;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 1rem 2rem;
+      background: #eee;
+      color: #555;
+      font-size: 0.9rem;
+      user-select: none;
+    }
+
+    /* Responsive Nav toggle for small devices */
+    @media (max-width: 600px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background: white;
+        position: absolute;
+        top: 60px;
+        right: 2rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        width: 150px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      }
+      nav ul.active {
+        display: flex;
+      }
+      nav .menu-toggle {
+        display: block;
+        cursor: pointer;
+        font-size: 1.5rem;
+        color: #007bff;
+      }
+    }
+    @media (min-width: 601px) {
+      nav .menu-toggle {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">AlexSmith</div>
+    <div class="menu-toggle" aria-label="Toggle menu">&#9776;</div>
+    <ul>
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section id="hero" aria-label="Introduction">
+    <h1>Hi, I'm Alex Smith</h1>
+    <p>Frontend Developer & Designer passionate about crafting clean, responsive websites.</p>
+  </section>
+
+  <section id="about" aria-label="About me">
+    <h2>About Me</h2>
+    <p>
+      I specialize in building modern, accessible web applications using HTML, CSS, and JavaScript.
+      I’m dedicated to creating pixel-perfect websites that look great on any device.
+      When I’m not coding, I enjoy photography and hiking.
+    </p>
+  </section>
+
+  <section id="projects" aria-label="My projects">
+    <h2>Projects</h2>
+    <div class="grid">
+      <div class="project-card" tabindex="0">
+        <h3>Portfolio Website</h3>
+        <p>A responsive portfolio showcasing my projects with smooth animations and clean UI.</p>
+      </div>
+      <div class="project-card" tabindex="0">
+        <h3>Todo App</h3>
+        <p>A simple, yet effective todo application built with vanilla JavaScript.</p>
+      </div>
+      <div class="project-card" tabindex="0">
+        <h3>Blog Template</h3>
+        <p>A minimalist blog layout designed with responsive CSS grid and flexbox.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" aria-label="Contact me">
+    <h2>Contact</h2>
+    <p>Get in touch with me via email:</p>
+    <p><a href="mailto:alex.smith@example.com" target="_blank" rel="noopener">alex.smith@example.com</a></p>
+  </section>
+
+  <footer>
+    &copy; 2025 Alex Smith. All rights reserved.
+  </footer>
+
+  <script>
+    // Toggle mobile menu
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navUl = document.querySelector('nav ul');
+
+    menuToggle.addEventListener('click', () => {
+      navUl.classList.toggle('active');
+    });
+
+    // Close menu on link click (mobile)
+    navUl.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navUl.classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>
