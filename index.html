@@ -1,253 +1,299 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Portfolio - Alex Smith</title>
+  <title>Tech Writer Portfolio | Your Name</title>
   <style>
-    /* Reset */
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
-    body, h1, h2, h3, p, ul {
-      margin: 0;
-      padding: 0;
+    /* Reset & base */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #222;
-    }
-    body {
-      background: #f5f7fa;
-      line-height: 1.6;
       scroll-behavior: smooth;
     }
-
-    /* Navbar */
-    nav {
-      position: fixed;
+    body {
+      background: #f9f9f9;
+      color: #222;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    a {
+      color: #007acc;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #005f99;
+    }
+    header {
+      background: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: sticky;
       top: 0;
-      width: 100%;
-      background: white;
-      box-shadow: 0 2px 5px rgb(0 0 0 / 0.1);
-      z-index: 999;
+      z-index: 1000;
+    }
+    nav {
+      max-width: 900px;
+      margin: auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
     }
-    nav .logo {
+    .logo {
       font-weight: 700;
-      font-size: 1.5rem;
-      color: #007bff;
+      font-size: 1.4rem;
+      letter-spacing: 1px;
+      color: #007acc;
     }
-    nav ul {
+    ul.nav-links {
       list-style: none;
       display: flex;
       gap: 2rem;
     }
-    nav ul li a {
-      color: #007bff;
+    ul.nav-links li {
       font-weight: 600;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    nav ul li a:hover {
-      color: #0056b3;
-    }
-
-    /* Sections */
-    section {
-      padding: 6rem 2rem 4rem;
-      max-width: 900px;
-      margin: 0 auto;
-      margin-top: 5rem;
-    }
-
-    /* Hero */
-    #hero {
-      text-align: center;
-      padding-top: 8rem;
-      padding-bottom: 6rem;
-    }
-    #hero h1 {
-      font-size: 3rem;
-      margin-bottom: 0.5rem;
-      color: #007bff;
-    }
-    #hero p {
-      font-size: 1.25rem;
-      color: #555;
-    }
-
-    /* About */
-    #about p {
-      font-size: 1.1rem;
-      color: #444;
-      max-width: 700px;
-      margin: 0 auto;
-      line-height: 1.8;
-    }
-
-    /* Projects */
-    #projects {
-      text-align: center;
-    }
-    #projects .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-    .project-card {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 3px 7px rgb(0 0 0 / 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: default;
-    }
-    .project-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 8px 15px rgb(0 0 0 / 0.15);
-    }
-    .project-card h3 {
-      margin-bottom: 0.5rem;
-      color: #007bff;
-    }
-    .project-card p {
-      color: #555;
       font-size: 1rem;
-      line-height: 1.5;
     }
 
-    /* Contact */
-    #contact {
-      text-align: center;
-      padding-bottom: 6rem;
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
     }
-    #contact p {
-      font-size: 1.1rem;
-      margin-bottom: 0.75rem;
-    }
-    #contact a {
-      color: #007bff;
-      font-weight: 600;
-      text-decoration: none;
-      border-bottom: 2px solid transparent;
-      transition: border-color 0.3s;
-    }
-    #contact a:hover {
-      border-bottom: 2px solid #007bff;
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background: #007acc;
+      border-radius: 3px;
     }
 
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 1rem 2rem;
-      background: #eee;
-      color: #555;
-      font-size: 0.9rem;
-      user-select: none;
-    }
-
-    /* Responsive Nav toggle for small devices */
-    @media (max-width: 600px) {
-      nav ul {
-        display: none;
-        flex-direction: column;
-        background: white;
-        position: absolute;
+    /* Responsive nav */
+    @media (max-width: 768px) {
+      ul.nav-links {
+        position: fixed;
         top: 60px;
-        right: 2rem;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        width: 150px;
-        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        right: 0;
+        background: #fff;
+        height: calc(100vh - 60px);
+        width: 200px;
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1.5rem;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+        box-shadow: -2px 0 8px rgba(0,0,0,0.1);
       }
-      nav ul.active {
+      ul.nav-links.active {
+        transform: translateX(0);
+      }
+      .hamburger {
         display: flex;
       }
-      nav .menu-toggle {
-        display: block;
-        cursor: pointer;
-        font-size: 1.5rem;
-        color: #007bff;
-      }
     }
-    @media (min-width: 601px) {
-      nav .menu-toggle {
-        display: none;
-      }
+
+    main {
+      max-width: 900px;
+      margin: 2rem auto 4rem;
+      padding: 0 1rem;
+      flex-grow: 1;
+    }
+    section {
+      margin-bottom: 3rem;
+    }
+    h1, h2, h3 {
+      color: #007acc;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+    h1 {
+      font-size: 2.5rem;
+    }
+    p {
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      color: #444;
+    }
+
+    /* Writing samples grid */
+    .writing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 1.5rem;
+    }
+    .writing-sample {
+      background: #fff;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      transition: box-shadow 0.3s ease;
+    }
+    .writing-sample:hover {
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
+    .writing-sample h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.25rem;
+      color: #005f99;
+    }
+    .writing-sample p {
+      color: #666;
+      font-size: 0.95rem;
+    }
+    .writing-sample a {
+      display: inline-block;
+      margin-top: 0.8rem;
+      font-weight: 600;
+      color: #007acc;
+      border-bottom: 1px solid transparent;
+      transition: border-bottom-color 0.3s ease;
+    }
+    .writing-sample a:hover {
+      border-bottom-color: #007acc;
+    }
+
+    /* Skills list */
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .skill {
+      background: #e1f0ff;
+      color: #007acc;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    /* Contact form */
+    form {
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    input, textarea {
+      padding: 0.75rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      resize: vertical;
+      font-family: inherit;
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #007acc;
+      box-shadow: 0 0 5px #aad4ff;
+    }
+    button {
+      background: #007acc;
+      border: none;
+      padding: 0.75rem;
+      color: white;
+      font-weight: 700;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background: #005f99;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem 1rem;
+      color: #777;
+      font-size: 0.9rem;
+      border-top: 1px solid #ddd;
     }
   </style>
 </head>
 <body>
-
-  <nav>
-    <div class="logo">AlexSmith</div>
-    <div class="menu-toggle" aria-label="Toggle menu">&#9776;</div>
-    <ul>
-      <li><a href="#hero">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <section id="hero" aria-label="Introduction">
-    <h1>Hi, I'm Alex Smith</h1>
-    <p>Frontend Developer & Designer passionate about crafting clean, responsive websites.</p>
-  </section>
-
-  <section id="about" aria-label="About me">
-    <h2>About Me</h2>
-    <p>
-      I specialize in building modern, accessible web applications using HTML, CSS, and JavaScript.
-      I’m dedicated to creating pixel-perfect websites that look great on any device.
-      When I’m not coding, I enjoy photography and hiking.
-    </p>
-  </section>
-
-  <section id="projects" aria-label="My projects">
-    <h2>Projects</h2>
-    <div class="grid">
-      <div class="project-card" tabindex="0">
-        <h3>Portfolio Website</h3>
-        <p>A responsive portfolio showcasing my projects with smooth animations and clean UI.</p>
+  <header>
+    <nav>
+      <div class="logo">Your Name</div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#writing">Writing</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <div></div><div></div><div></div>
       </div>
-      <div class="project-card" tabindex="0">
-        <h3>Todo App</h3>
-        <p>A simple, yet effective todo application built with vanilla JavaScript.</p>
-      </div>
-      <div class="project-card" tabindex="0">
-        <h3>Blog Template</h3>
-        <p>A minimalist blog layout designed with responsive CSS grid and flexbox.</p>
-      </div>
-    </div>
-  </section>
+    </nav>
+  </header>
 
-  <section id="contact" aria-label="Contact me">
-    <h2>Contact</h2>
-    <p>Get in touch with me via email:</p>
-    <p><a href="mailto:alex.smith@example.com" target="_blank" rel="noopener">alex.smith@example.com</a></p>
-  </section>
+  <main>
+    <section id="about">
+      <h1>Hello, I'm Your Name</h1>
+      <p>I'm a tech writer specializing in clear, concise, and engaging documentation, tutorials, and articles about software development, tools, and emerging technologies. I help make complex topics accessible to diverse audiences.</p>
+    </section>
+
+    <section id="writing">
+      <h2>Writing Samples</h2>
+      <div class="writing-grid">
+        <article class="writing-sample">
+          <h3><a href="https://yourblog.com/sample-article-1" target="_blank" rel="noopener noreferrer">Understanding API Authentication</a></h3>
+          <p>A beginner-friendly guide to different API authentication methods, including OAuth, API keys, and JWT tokens.</p>
+        </article>
+        <article class="writing-sample">
+          <h3><a href="https://yourblog.com/sample-article-2" target="_blank" rel="noopener noreferrer">Docker for Developers</a></h3>
+          <p>Step-by-step tutorial on containerizing your applications using Docker and best practices to streamline deployment.</p>
+        </article>
+        <article class="writing-sample">
+          <h3><a href="https://yourblog.com/sample-article-3" target="_blank" rel="noopener noreferrer">Introduction to Kubernetes</a></h3>
+          <p>An overview of Kubernetes architecture and how it simplifies container orchestration at scale.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Skills & Tools</h2>
+      <div class="skills-list">
+        <span class="skill">Technical Writing</span>
+        <span class="skill">Markdown & Docs-as-Code</span>
+        <span class="skill">API Documentation</span>
+        <span class="skill">Git & GitHub</span>
+        <span class="skill">JIRA & Confluence</span>
+        <span class="skill">SEO for Tech Content</span>
+        <span class="skill">JavaScript & Python Basics</span>
+        <span class="skill">Content Management Systems</span>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact Me</h2>
+      <form action="https://formspree.io/f/your-form-id" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="_replyto" placeholder="Your Email" required />
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </section>
+  </main>
 
   <footer>
-    &copy; 2025 Alex Smith. All rights reserved.
+    &copy; 2025 Your Name &mdash; <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">GitHub</a>
   </footer>
 
   <script>
-    // Toggle mobile menu
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navUl = document.querySelector('nav ul');
-
-    menuToggle.addEventListener('click', () => {
-      navUl.classList.toggle('active');
+    // Hamburger toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
     });
-
-    // Close menu on link click (mobile)
-    navUl.querySelectorAll('a').forEach(link => {
+    // Close nav on link click (mobile)
+    navLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
-        navUl.classList.remove('active');
+        navLinks.classList.remove('active');
       });
     });
   </script>
