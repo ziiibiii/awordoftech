@@ -12,23 +12,23 @@
       scroll-behavior: smooth;
     }
     body {
-      background: #f9f9f9;
-      color: #222;
+      background: #FAFAFA; /* off-white background */
+      color: #111111; /* almost black text */
       line-height: 1.6;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
     a {
-      color: #007acc;
+      color: #D35400; /* strong orange */
       text-decoration: none;
       transition: color 0.3s ease;
     }
     a:hover {
-      color: #005f99;
+      color: #B03A02; /* deep orange hover */
     }
     header {
-      background: #fff;
+      background: #FFFFFF; /* white header */
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       position: sticky;
       top: 0;
@@ -46,7 +46,7 @@
       font-weight: 700;
       font-size: 1.4rem;
       letter-spacing: 1px;
-      color: #007acc;
+      color: #D35400;
     }
     ul.nav-links {
       list-style: none;
@@ -56,6 +56,7 @@
     ul.nav-links li {
       font-weight: 600;
       font-size: 1rem;
+      color: #111111;
     }
 
     /* Hamburger */
@@ -68,7 +69,7 @@
     .hamburger div {
       width: 25px;
       height: 3px;
-      background: #007acc;
+      background: #D35400;
       border-radius: 3px;
     }
 
@@ -78,7 +79,7 @@
         position: fixed;
         top: 60px;
         right: 0;
-        background: #fff;
+        background: #FFFFFF;
         height: calc(100vh - 60px);
         width: 200px;
         flex-direction: column;
@@ -106,17 +107,18 @@
       margin-bottom: 3rem;
     }
     h1, h2, h3 {
-      color: #007acc;
+      color: #D35400;
       margin-bottom: 1rem;
       font-weight: 700;
     }
     h1 {
       font-size: 2.5rem;
+      color: #B03A02; /* a bit darker for main header */
     }
     p {
       margin-bottom: 1rem;
       font-size: 1.1rem;
-      color: #444;
+      color: #444444;
     }
 
     /* Writing samples grid */
@@ -126,7 +128,8 @@
       gap: 1.5rem;
     }
     .writing-sample {
-      background: #fff;
+      background: #FFFFFF;
+      border: 1px solid #DDDDDD;
       border-radius: 8px;
       padding: 1.5rem;
       box-shadow: 0 4px 8px rgba(0,0,0,0.05);
@@ -138,22 +141,22 @@
     .writing-sample h3 {
       margin-bottom: 0.5rem;
       font-size: 1.25rem;
-      color: #005f99;
+      color: #B03A02;
     }
     .writing-sample p {
-      color: #666;
+      color: #666666;
       font-size: 0.95rem;
     }
     .writing-sample a {
       display: inline-block;
       margin-top: 0.8rem;
       font-weight: 600;
-      color: #007acc;
+      color: #D35400;
       border-bottom: 1px solid transparent;
       transition: border-bottom-color 0.3s ease;
     }
     .writing-sample a:hover {
-      border-bottom-color: #007acc;
+      border-bottom-color: #D35400;
     }
 
     /* Skills list */
@@ -163,8 +166,8 @@
       gap: 1rem;
     }
     .skill {
-      background: #e1f0ff;
-      color: #007acc;
+      background: #FDEBD0; /* light warm orange tint */
+      color: #D35400;
       padding: 0.5rem 1rem;
       border-radius: 20px;
       font-weight: 600;
@@ -181,18 +184,18 @@
     input, textarea {
       padding: 0.75rem;
       border-radius: 6px;
-      border: 1px solid #ccc;
+      border: 1px solid #DDDDDD;
       font-size: 1rem;
       resize: vertical;
       font-family: inherit;
     }
     input:focus, textarea:focus {
       outline: none;
-      border-color: #007acc;
-      box-shadow: 0 0 5px #aad4ff;
+      border-color: #D35400;
+      box-shadow: 0 0 5px #F5B041;
     }
     button {
-      background: #007acc;
+      background: #D35400;
       border: none;
       padding: 0.75rem;
       color: white;
@@ -202,15 +205,15 @@
       transition: background-color 0.3s ease;
     }
     button:hover {
-      background: #005f99;
+      background: #B03A02;
     }
 
     footer {
       text-align: center;
       padding: 1.5rem 1rem;
-      color: #777;
+      color: #444444;
       font-size: 0.9rem;
-      border-top: 1px solid #ddd;
+      border-top: 1px solid #DDDDDD;
     }
   </style>
 </head>
@@ -224,7 +227,7 @@
         <li><a href="#skills">Skills</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <div class="hamburger" id="hamburger">
+      <div class="hamburger" id="hamburger" aria-label="Toggle navigation" role="button" tabindex="0">
         <div></div><div></div><div></div>
       </div>
     </nav>
@@ -289,6 +292,11 @@
     const navLinks = document.getElementById('nav-links');
     hamburger.addEventListener('click', () => {
       navLinks.classList.toggle('active');
+    });
+    hamburger.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        navLinks.classList.toggle('active');
+      }
     });
     // Close nav on link click (mobile)
     navLinks.querySelectorAll('a').forEach(link => {
